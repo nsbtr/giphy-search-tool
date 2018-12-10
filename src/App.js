@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class App extends Component {
 
     this.state = {
       items: [],
+      searchTerm: null,
     };
   }
 
@@ -29,16 +31,20 @@ class App extends Component {
   }
 
   render() {
+    const { searchTerm } = this.state;
+
     return (
       <div className="App">
         Awesome giphy search app :D
-        {this.state.items.map(item => (
+        <SearchBar />
+        {searchTerm ? searchTerm : 'No search term :('}
+        {/* {this.state.items.map(item => (
           <img
             src={item.images.fixed_height.url}
             key={item.id}
             alt={item.title}
           />
-        ))}
+        ))} */}
       </div>
     );
   }
