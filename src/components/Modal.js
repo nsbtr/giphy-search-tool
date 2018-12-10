@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Rating from './Rating';
 
 const Container = styled.div`
   position: fixed;
@@ -51,10 +52,6 @@ const CloseButton = styled.button`
   right: 0;
 `;
 
-const Rating = styled.div`
-  border: 1px solid red;
-`;
-
 class Modal extends Component {
   render() {
     const { item, handleModalClose, handleRating } = this.props;
@@ -74,16 +71,7 @@ class Modal extends Component {
             <label>Link:</label>
             <input type="text" value={item.images.original.url} readOnly />
             <a href={item.url}>View on GIPHY</a>
-            <Rating>
-              {[1, 2, 3, 4, 5].map(rating => (
-                <button
-                  onClick={() => handleRating(item.id, rating)}
-                  key={rating}
-                >
-                  {rating}
-                </button>
-              ))}
-            </Rating>
+            <Rating handleRating={handleRating} item={item} />
           </DetailsContainer>
           <CloseButton onClick={handleModalClose}>Close Modal</CloseButton>
         </ModalContent>
