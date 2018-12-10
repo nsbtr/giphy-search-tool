@@ -8,6 +8,7 @@ const Item = ({ item, handleClick }) => (
       alt={item.title}
       onClick={() => handleClick(item.id)}
     />
+    {item.userRating}
   </div>
 );
 

@@ -3,7 +3,8 @@ import './App.css';
 import Header from './components/Header';
 import List from './components/List';
 import Modal from './components/Modal';
-import { getItemById } from './lib/data';
+import { getItemById, addRating, getItemsWithRatings } from './lib/data';
+import { get } from 'idb-keyval';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleRating = this.handleRating.bind(this);
     this.setLoading = this.setLoading.bind(this);
   }
 
@@ -39,6 +41,17 @@ class App extends Component {
     this.setState({ isModalOpen: false });
   }
 
+  handleRating(id, userRating) {
+    addRating(id, userRating).then(() => {
+      const index = this.state.items.findIndex(item => item.id === id);
+      const newItems = [...this.state.items];
+      newItems.splice(index, 1, { ...newItems[index], userRating });
+      this.setState({
+        items: newItems,
+      });
+    });
+  }
+
   setLoading(isLoading) {
     this.setState({ isLoading });
   }
@@ -51,7 +64,15 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(results => {
-        this.setState({ items: results.data });
+        get('gif_ratings').then(ratings => {
+          const items = getItemsWithRatings(results.data, ratings);
+          console.log('items', items);
+          this.setState({ items });
+        });
+
+        // this.setState({
+        //   items: results.data.map(item => ({ ...item, rating: 0 })),
+        // });
         this.setLoading(false);
       });
   }
@@ -69,6 +90,7 @@ class App extends Component {
           <Modal
             item={this.state.selectedItem}
             handleModalClose={this.handleModalClose}
+            handleRating={this.handleRating}
           />
         )}
       </div>

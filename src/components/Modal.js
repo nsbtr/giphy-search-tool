@@ -51,9 +51,13 @@ const CloseButton = styled.button`
   right: 0;
 `;
 
+const Rating = styled.div`
+  border: 1px solid red;
+`;
+
 class Modal extends Component {
   render() {
-    const { item, handleModalClose } = this.props;
+    const { item, handleModalClose, handleRating } = this.props;
     return (
       <Container>
         <ModalContent>
@@ -70,6 +74,16 @@ class Modal extends Component {
             <label>Link:</label>
             <input type="text" value={item.images.original.url} readOnly />
             <a href={item.url}>View on GIPHY</a>
+            <Rating>
+              {[1, 2, 3, 4, 5].map(rating => (
+                <button
+                  onClick={() => handleRating(item.id, rating)}
+                  key={rating}
+                >
+                  {rating}
+                </button>
+              ))}
+            </Rating>
           </DetailsContainer>
           <CloseButton onClick={handleModalClose}>Close Modal</CloseButton>
         </ModalContent>
