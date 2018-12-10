@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
+import Item from './components/Item';
 
 class App extends Component {
   constructor(props) {
@@ -8,13 +9,20 @@ class App extends Component {
 
     this.state = {
       items: [],
-      searchTerm: null,
     };
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  componentDidMount() {
+  handleSearch(query) {
+    if (query) {
+      this.fetchResults(query);
+    }
+  }
+
+  fetchResults(query) {
     const apiKey = '1RKXhyDiZ7ei9vWUKDXsxQc6yov96NSl';
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=dogs&limit=30`;
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=30`;
 
     fetch(url)
       .then(response => response.json())
@@ -31,20 +39,12 @@ class App extends Component {
   }
 
   render() {
-    const { searchTerm } = this.state;
-
     return (
       <div className="App">
         Awesome giphy search app :D
-        <SearchBar />
-        {searchTerm ? searchTerm : 'No search term :('}
-        {/* {this.state.items.map(item => (
-          <img
-            src={item.images.fixed_height.url}
-            key={item.id}
-            alt={item.title}
-          />
-        ))} */}
+        <SearchBar handleSearch={this.handleSearch} />
+        {this.state.items.length > 0 &&
+          this.state.items.map(item => <Item item={item} key={item.id} />)}
       </div>
     );
   }
