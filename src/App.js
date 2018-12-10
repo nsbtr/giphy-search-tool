@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import List from './components/List';
 import Modal from './components/Modal';
+import { getItemById } from './lib/data';
 
 class App extends Component {
   constructor(props) {
@@ -10,12 +11,14 @@ class App extends Component {
 
     this.state = {
       items: [],
+      selectedItem: {},
       isLoading: false,
       isModalOpen: false,
     };
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleItemClick = this.handleItemClick.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
     this.setLoading = this.setLoading.bind(this);
   }
 
@@ -26,8 +29,14 @@ class App extends Component {
   }
 
   handleItemClick(id) {
-    console.log(id);
-    this.setState({ isModalOpen: true });
+    const selectedItem = getItemById(this.state.items, id);
+    this.setState({ selectedItem }, () => {
+      this.setState({ isModalOpen: true });
+    });
+  }
+
+  handleModalClose() {
+    this.setState({ isModalOpen: false });
   }
 
   setLoading(isLoading) {
@@ -56,7 +65,12 @@ class App extends Component {
           isLoading={this.state.isLoading}
           handleItemClick={this.handleItemClick}
         />
-        {this.state.isModalOpen && <Modal />}
+        {this.state.isModalOpen && (
+          <Modal
+            item={this.state.selectedItem}
+            handleModalClose={this.handleModalClose}
+          />
+        )}
       </div>
     );
   }

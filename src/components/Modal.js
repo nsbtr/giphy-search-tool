@@ -14,16 +14,65 @@ const Container = styled.div`
 `;
 
 const ModalContent = styled.div`
+  position: relative;
   background: white;
+  border-radius: 30px;
   width: 80%;
   height: 80%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Title = styled.h2`
+  font-family: 'Roboto Mono', monospace;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ImageContainer = styled(ContentContainer)`
+  > img {
+    max-width: 100%;
+  }
+`;
+
+const DetailsContainer = styled(ContentContainer)`
+  flex-direction: column;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 class Modal extends Component {
   render() {
+    const { item, handleModalClose } = this.props;
     return (
       <Container>
-        <ModalContent>Gif details</ModalContent>
+        <ModalContent>
+          <ImageContainer>
+            <img
+              src={item.images.original.url}
+              width={item.images.width}
+              height={item.images.height}
+              alt={item.title}
+            />
+          </ImageContainer>
+          <DetailsContainer>
+            <Title>{item.title}</Title>
+            <label>Link:</label>
+            <input type="text" value={item.images.original.url} />
+            <a href={item.url}>View on GIPHY</a>
+          </DetailsContainer>
+          <CloseButton onClick={handleModalClose}>Close Modal</CloseButton>
+        </ModalContent>
       </Container>
     );
   }
