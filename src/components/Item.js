@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Item = ({ item }) => (
-  <img src={item.images.fixed_width.url} key={item.id} alt={item.title} />
+  <div>
+    <img
+      src={item.images.fixed_height_small.url}
+      key={item.id}
+      alt={item.title}
+    />
+  </div>
 );
 
 Item.propTypes = {

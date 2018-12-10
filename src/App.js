@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
-import Item from './components/Item';
+import List from './components/List';
 
 class App extends Component {
   constructor(props) {
@@ -9,9 +9,11 @@ class App extends Component {
 
     this.state = {
       items: [],
+      isLoading: false,
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.setLoading = this.setLoading.bind(this);
   }
 
   handleSearch(query) {
@@ -20,21 +22,20 @@ class App extends Component {
     }
   }
 
+  setLoading(isLoading) {
+    this.setState({ isLoading });
+  }
+
   fetchResults(query) {
+    this.setLoading(true);
     const apiKey = '1RKXhyDiZ7ei9vWUKDXsxQc6yov96NSl';
     const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=30`;
 
     fetch(url)
       .then(response => response.json())
       .then(results => {
-        let items = results.data.map(item => ({
-          id: item.id,
-          url: item.url,
-          images: item.images,
-          title: item.title,
-        }));
-
-        this.setState({ items });
+        this.setState({ items: results.data });
+        this.setLoading(false);
       });
   }
 
@@ -42,8 +43,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header handleSearch={this.handleSearch} />
-        {this.state.items.length > 0 &&
-          this.state.items.map(item => <Item item={item} key={item.id} />)}
+        <List items={this.state.items} isLoading={this.state.isLoading} />
       </div>
     );
   }
