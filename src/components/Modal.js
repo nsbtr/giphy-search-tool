@@ -68,7 +68,7 @@ class Modal extends Component {
           <DetailsContainer>
             <Title>{item.title}</Title>
             <label>Link:</label>
-            <input type="text" value={item.images.original.url} />
+            <input type="text" value={item.images.original.url} readOnly />
             <a href={item.url}>View on GIPHY</a>
           </DetailsContainer>
           <CloseButton onClick={handleModalClose}>Close Modal</CloseButton>
