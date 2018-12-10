@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import List from './components/List';
+import Modal from './components/Modal';
 
 class App extends Component {
   constructor(props) {
@@ -10,9 +11,11 @@ class App extends Component {
     this.state = {
       items: [],
       isLoading: false,
+      isModalOpen: false,
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
     this.setLoading = this.setLoading.bind(this);
   }
 
@@ -20,6 +23,11 @@ class App extends Component {
     if (query) {
       this.fetchResults(query);
     }
+  }
+
+  handleItemClick(id) {
+    console.log(id);
+    this.setState({ isModalOpen: true });
   }
 
   setLoading(isLoading) {
@@ -43,7 +51,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header handleSearch={this.handleSearch} />
-        <List items={this.state.items} isLoading={this.state.isLoading} />
+        <List
+          items={this.state.items}
+          isLoading={this.state.isLoading}
+          handleItemClick={this.handleItemClick}
+        />
+        {this.state.isModalOpen && <Modal />}
       </div>
     );
   }

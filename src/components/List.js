@@ -27,16 +27,18 @@ const LoadingMessage = styled.div`
   font-family: 'Roboto Mono', monospace;
 `;
 
-const List = ({ items, isLoading }) => (
+const List = ({ items, isLoading, handleItemClick }) => (
   <Container>
     {isLoading ? (
       <LoadingMessage>Loading!</LoadingMessage>
     ) : items.length > 0 ? (
-      items.map(item => <Item item={item} key={item.id} />)
+      items.map(item => (
+        <Item item={item} key={item.id} handleClick={handleItemClick} />
+      ))
     ) : (
       <Message>
         <p>
-          Nothing to see here. Try searching for something!{' '}
+          Nothing to see here. Try searching for something!
           <span role="img" aria-label="magnifying glass">
             🔎
           </span>
