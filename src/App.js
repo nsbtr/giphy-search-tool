@@ -46,9 +46,14 @@ class App extends Component {
       const index = this.state.items.findIndex(item => item.id === id);
       const newItems = [...this.state.items];
       newItems.splice(index, 1, { ...newItems[index], userRating });
-      this.setState({
-        items: newItems,
-      });
+      this.setState(
+        {
+          items: newItems,
+        },
+        () => {
+          this.setState({ selectedItem: getItemById(this.state.items, id) });
+        }
+      );
     });
   }
 

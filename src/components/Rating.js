@@ -10,6 +10,7 @@ const RatingButton = styled.button`
   color: ${props => (props.isActive ? '#ffbf2b' : '#c9c9c9')};
   font-family: 'Material Icons';
   font-size: 24px;
+  cursor: pointer;
 `;
 
 class Rating extends Component {

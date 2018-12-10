@@ -13,6 +13,7 @@ const Container = styled.div`
 
 const Message = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: calc(100vh - 200px);
@@ -37,12 +38,12 @@ const List = ({ items, isLoading, handleItemClick }) => (
       ))
     ) : (
       <Message>
-        <p>
-          Nothing to see here. Try searching for something!
-          <span role="img" aria-label="magnifying glass">
-            🔎
-          </span>
-        </p>
+        <p>Nothing to see here. Try typing something in the search bar!</p>
+        <img
+          src="https://media2.giphy.com/media/mCRJDo24UvJMA/giphy.gif"
+          width="300"
+          alt="dog typing"
+        />
       </Message>
     )}
   </Container>
