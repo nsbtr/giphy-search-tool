@@ -66,13 +66,8 @@ class App extends Component {
       .then(results => {
         get('gif_ratings').then(ratings => {
           const items = getItemsWithRatings(results.data, ratings);
-          console.log('items', items);
           this.setState({ items });
         });
-
-        // this.setState({
-        //   items: results.data.map(item => ({ ...item, rating: 0 })),
-        // });
         this.setLoading(false);
       });
   }

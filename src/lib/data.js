@@ -12,16 +12,30 @@ export const addRating = async (id, rating) => {
 };
 
 export const getItemsWithRatings = (items, ratings) => {
-  return items.map(item => {
+  const itemsWithRanking = items.map(item => {
     let userRating = 0;
 
     if (ratings && ratings.hasOwnProperty(item.id)) {
       userRating = ratings[item.id];
     }
 
-    return {
-      ...item,
-      userRating,
-    };
+    return { ...item, userRating };
+  });
+
+  const sortedItems = sortItemsByRanking(itemsWithRanking);
+
+  return sortedItems;
+};
+
+const sortItemsByRanking = items => {
+  return items.sort((a, b) => {
+    let comparison = 0;
+    if (a.userRating > b.userRating) {
+      comparison = -1;
+    } else if (a.userRating < b.userRating) {
+      comparison = 1;
+    }
+
+    return comparison;
   });
 };
