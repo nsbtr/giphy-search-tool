@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchBar from './components/SearchBar';
+import Header from './components/Header';
 import Item from './components/Item';
 
 class App extends Component {
@@ -41,8 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        Awesome giphy search app :D
-        <SearchBar handleSearch={this.handleSearch} />
+        <Header handleSearch={this.handleSearch} />
         {this.state.items.length > 0 &&
           this.state.items.map(item => <Item item={item} key={item.id} />)}
       </div>
