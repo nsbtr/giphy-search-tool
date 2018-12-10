@@ -22,12 +22,12 @@ export const getItemsWithRatings = (items, ratings) => {
     return { ...item, userRating };
   });
 
-  const sortedItems = sortItemsByRanking(itemsWithRanking);
+  const sortedItems = sortItemsByRating(itemsWithRanking);
 
   return sortedItems;
 };
 
-const sortItemsByRanking = items => {
+const sortItemsByRating = items => {
   return items.sort((a, b) => {
     let comparison = 0;
     if (a.userRating > b.userRating) {
