@@ -22,7 +22,6 @@ const ModalContent = styled.div`
   height: 80%;
   padding: 30px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
 `;
 
@@ -34,6 +33,7 @@ const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50%;
 `;
 
 const ImageContainer = styled(ContentContainer)`
