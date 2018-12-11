@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Button from './Button';
+import InputComponent from './Input';
 
 const Container = styled.div`
   flex-grow: 1;
@@ -11,25 +13,11 @@ const Form = styled.form`
   display: flex;
 `;
 
-const Input = styled.input`
+const Input = styled(InputComponent)`
+  font-size: 30px;
   flex-grow: 1;
   height: 40px;
   margin-right: 5px;
-  border: none;
-  background: #ededed;
-  padding: 10px;
-  font-size: 30px;
-  font-family: 'Roboto Mono', monospace;
-`;
-
-const Button = styled.button`
-  border: 1px solid #644784;
-  background: #8c64b7;
-  min-width: 150px;
-  font-family: 'Roboto Mono', monospace;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #ffffff;
 `;
 
 class SearchBar extends Component {
