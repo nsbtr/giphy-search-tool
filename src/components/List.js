@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import Item from './Item';
 
 const Container = styled.div`
-  padding: 100px 20px;
-  min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 100px 20px;
+  min-height: 100vh;
 `;
 
 const Message = styled.div`
@@ -17,21 +17,13 @@ const Message = styled.div`
   align-items: center;
   justify-content: center;
   height: calc(100vh - 200px);
-  font-family: 'Roboto Mono', monospace;
-`;
-
-const LoadingMessage = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 200px);
-  font-family: 'Roboto Mono', monospace;
+  font-family: ${props => props.theme.fontFamily};
 `;
 
 const List = ({ items, isLoading, handleItemClick }) => (
   <Container>
     {isLoading ? (
-      <LoadingMessage>Loading!</LoadingMessage>
+      <Message>Loading...</Message>
     ) : items.length > 0 ? (
       items.map(item => (
         <Item item={item} key={item.id} handleClick={handleItemClick} />
@@ -52,6 +44,7 @@ const List = ({ items, isLoading, handleItemClick }) => (
 List.propTypes = {
   items: PropTypes.array,
   isLoading: PropTypes.bool,
+  handleItemClick: PropTypes.func,
 };
 
 export default List;

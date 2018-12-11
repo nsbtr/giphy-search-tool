@@ -14,10 +14,10 @@ const Form = styled.form`
 `;
 
 const Input = styled(InputComponent)`
-  font-size: 30px;
-  flex-grow: 1;
   height: 40px;
   margin-right: 5px;
+  font-size: 30px;
+  flex-grow: 1;
 `;
 
 class SearchBar extends Component {

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 
 const Container = styled.div`
-  background: #ffffff;
   position: fixed;
-  width: 100%;
   display: flex;
-  border-bottom: 1px solid #eaeaea;
+  width: 100%;
   padding: 20px;
+  background: ${props => props.theme.white};
+  border-bottom: 1px solid ${props => props.theme.grey};
 `;
 
 const TitleContainer = styled.div`
@@ -22,7 +22,10 @@ const Title = styled.h1`
   display: inline;
   position: relative;
   padding: 0 10px 3px;
-  background-image: linear-gradient(transparent 60%, #d9f2c9 40%);
+  background-image: linear-gradient(
+    transparent 60%,
+    ${props => props.theme.green} 40%
+  );
   background-repeat: repeat-x;
   background-size: 200% 100%;
   font-family: 'Roboto Mono', monospace;

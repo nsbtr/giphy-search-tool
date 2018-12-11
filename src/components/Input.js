@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const InputComponent = styled.input`
-  border: none;
-  background: #ededed;
+  width: 100%;
   padding: 10px;
+  border: none;
+  background: ${props => props.theme.grey};
   font-size: 12px;
   font-family: 'Roboto Mono', monospace;
-  width: 100%;
 `;
 
 const Input = ({ className, value, onChange, isReadOnly }) => (
@@ -21,8 +21,10 @@ const Input = ({ className, value, onChange, isReadOnly }) => (
 );
 
 Input.propTypes = {
-  items: PropTypes.array,
-  isLoading: PropTypes.bool,
+  className: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  isReadOnly: PropTypes.bool,
 };
 
 export default Input;

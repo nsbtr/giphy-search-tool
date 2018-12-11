@@ -3,28 +3,29 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ButtonComponent = styled.button`
-  border: 1px solid #644784;
-  background: #8c64b7;
   min-width: 150px;
-  font-family: 'Roboto Mono', monospace;
+  border: 1px solid ${props => props.theme.purpleDark};
+  background: ${props => props.theme.purple};
+  color: ${props => props.theme.white};
+  font-family: ${props => props.theme.fontFamily};
+  font-weight: ${props => props.theme.bold};
   text-transform: uppercase;
-  font-weight: 600;
-  color: #ffffff;
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
-    background: white;
-    color: #644784;
+    background: ${props => props.theme.white};
+    color: ${props => props.theme.purpleDark};
   }
 `;
 
 const Button = ({ children, onClick }) => (
-  <ButtonComponent>{children}</ButtonComponent>
+  <ButtonComponent onClick={onClick}>{children}</ButtonComponent>
 );
 
 Button.propTypes = {
-  items: PropTypes.array,
-  isLoading: PropTypes.bool,
+  children: PropTypes.any,
+  onClick: PropTypes.func,
 };
 
 export default Button;

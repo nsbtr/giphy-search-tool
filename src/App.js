@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
 import './App.css';
+import theme from './theme';
 import Header from './components/Header';
 import List from './components/List';
 import Modal from './components/Modal';
@@ -79,21 +81,23 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header handleSearch={this.handleSearch} />
-        <List
-          items={this.state.items}
-          isLoading={this.state.isLoading}
-          handleItemClick={this.handleItemClick}
-        />
-        {this.state.isModalOpen && (
-          <Modal
-            item={this.state.selectedItem}
-            handleModalClose={this.handleModalClose}
-            handleRating={this.handleRating}
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <Header handleSearch={this.handleSearch} />
+          <List
+            items={this.state.items}
+            isLoading={this.state.isLoading}
+            handleItemClick={this.handleItemClick}
           />
-        )}
-      </div>
+          {this.state.isModalOpen && (
+            <Modal
+              item={this.state.selectedItem}
+              handleModalClose={this.handleModalClose}
+              handleRating={this.handleRating}
+            />
+          )}
+        </div>
+      </ThemeProvider>
     );
   }
 }

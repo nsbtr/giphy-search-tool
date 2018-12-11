@@ -6,29 +6,27 @@ import Input from './Input';
 
 const Container = styled.div`
   position: fixed;
-  background: rgba(0, 0, 0, 0.5);
   top: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: ${props => props.theme.modalBg};
 `;
 
 const ModalContent = styled.div`
   position: relative;
-  background: white;
-  border-radius: 30px;
   width: 60%;
   height: 80%;
   padding: 30px;
   display: flex;
   justify-content: center;
+  background: ${props => props.theme.white};
+  border-radius: ${props => props.theme.modalBorderRadius};
 `;
 
-const Title = styled.h2`
-  font-family: 'Roboto Mono', monospace;
-`;
+const Title = styled.h2``;
 
 const ContentContainer = styled.div`
   display: flex;
@@ -52,29 +50,29 @@ const CloseButton = styled.button`
   position: absolute;
   top: 30px;
   right: 30px;
-  font-family: 'Material Icons';
-  font-size: 24px;
+  font-family: ${props => props.theme.fontIcons};
+  font-size: ${props => props.theme.fontSizeIcon};
   background: none;
   border: none;
 `;
 
 const Link = styled.a`
-  margin: 20px 0;
-  border: 1px solid #644784;
-  background: #8c64b7;
   min-width: 150px;
-  font-family: 'Roboto Mono', monospace;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid ${props => props.theme.purpleDark};
+  background: ${props => props.theme.purple};
+  color: ${props => props.theme.white};
+  font-family: ${props => props.theme.fontFamily};
+  font-weight: ${props => props.theme.bold};
+  font-size: 12px;
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 12px;
-  color: #ffffff;
-  padding: 15px;
   transition: all 0.2s ease;
 
   &:hover {
-    background: white;
-    color: #644784;
+    background: ${props => props.theme.white};
+    color: ${props => props.theme.purpleDark};
   }
 `;
 
@@ -86,12 +84,11 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
-  font-family: 'Roboto Mono', monospace;
+  margin-right: 10px;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 15px;
   line-height: 1.5;
-  margin-right: 10px;
 `;
 
 class Modal extends Component {
@@ -132,6 +129,10 @@ class Modal extends Component {
   }
 }
 
-Modal.propTypes = {};
+Modal.propTypes = {
+  item: PropTypes.object,
+  handleModalClose: PropTypes.func,
+  handleRating: PropTypes.func,
+};
 
 export default Modal;
