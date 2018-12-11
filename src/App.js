@@ -29,6 +29,8 @@ class App extends Component {
   handleSearch(query) {
     if (query) {
       this.fetchResults(query);
+    } else {
+      this.setState({ items: {} });
     }
   }
 

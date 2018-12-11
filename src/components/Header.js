@@ -34,7 +34,6 @@ const Title = styled.h1`
   );
   background-repeat: repeat-x;
   background-size: 200% 100%;
-  font-family: 'Roboto Mono', monospace;
 `;
 
 const Header = ({ handleSearch }) => (
