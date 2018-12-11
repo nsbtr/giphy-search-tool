@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-top: 2px;
+`;
 
 const RatingButton = styled.button`
   border: none;
@@ -11,6 +13,7 @@ const RatingButton = styled.button`
   font-family: 'Material Icons';
   font-size: 24px;
   cursor: pointer;
+  padding: 0;
 `;
 
 class Rating extends Component {

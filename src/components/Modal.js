@@ -45,6 +45,7 @@ const ImageContainer = styled(ContentContainer)`
 
 const DetailsContainer = styled(ContentContainer)`
   flex-direction: column;
+  padding: 20px;
 `;
 
 const CloseButton = styled.button`
@@ -58,6 +59,7 @@ const CloseButton = styled.button`
 `;
 
 const Link = styled.a`
+  margin: 20px 0;
   border: 1px solid #644784;
   background: #8c64b7;
   min-width: 150px;
@@ -65,8 +67,9 @@ const Link = styled.a`
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
+  font-size: 12px;
   color: #ffffff;
-  padding: 20px;
+  padding: 15px;
   transition: all 0.2s ease;
 
   &:hover {
@@ -75,7 +78,21 @@ const Link = styled.a`
   }
 `;
 
-const Label = styled.label``;
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Label = styled.label`
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-right: 10px;
+`;
 
 class Modal extends Component {
   render() {
@@ -93,14 +110,20 @@ class Modal extends Component {
           </ImageContainer>
           <DetailsContainer>
             <Title>{item.title}</Title>
-            <label>Link:</label>
-            <Input
-              type="text"
-              value={item.images.original.url}
-              isReadOnly={true}
-            />
+            <Wrapper>
+              <Label>URL</Label>
+              <Input
+                type="text"
+                value={item.images.original.url}
+                isReadOnly={true}
+              />
+            </Wrapper>
+
             <Link href={item.url}>View on GIPHY</Link>
-            <Rating handleRating={handleRating} item={item} />
+            <Wrapper>
+              <Label>Your Rating</Label>
+              <Rating handleRating={handleRating} item={item} />
+            </Wrapper>
           </DetailsContainer>
           <CloseButton onClick={handleModalClose}>close</CloseButton>
         </ModalContent>
