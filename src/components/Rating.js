@@ -43,6 +43,9 @@ class Rating extends Component {
   }
 }
 
-Rating.propTypes = {};
+Rating.propTypes = {
+  handleRating: PropTypes.func,
+  item: PropTypes.object,
+};
 
 export default Rating;
