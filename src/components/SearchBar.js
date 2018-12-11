@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import media from './../utils/media';
 import Button from './Button';
 import InputComponent from './Input';
 
@@ -11,6 +12,9 @@ const Container = styled.div`
 const Form = styled.form`
   width: 100%;
   display: flex;
+  ${media.mobile`
+    flex-direction: column;
+  `}
 `;
 
 const Input = styled(InputComponent)`
@@ -18,6 +22,9 @@ const Input = styled(InputComponent)`
   margin-right: 5px;
   font-size: 30px;
   flex-grow: 1;
+  ${media.mobile`
+    margin-bottom: 5px;
+  `}
 `;
 
 class SearchBar extends Component {

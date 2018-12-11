@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import media from './../utils/media';
 import SearchBar from './SearchBar';
 
 const Container = styled.div`
   position: fixed;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   padding: 20px;
   background: ${props => props.theme.white};
@@ -13,7 +15,11 @@ const Container = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  min-width: 300px;
+  height: 60px;
+  ${media.desktop`
+    min-width: 300px;
+    height: 40px;
+  `}
 `;
 
 const Title = styled.h1`

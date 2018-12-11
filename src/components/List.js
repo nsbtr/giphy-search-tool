@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import media from './../utils/media';
 import Item from './Item';
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 100px 20px;
   min-height: 100vh;
+  ${media.desktop`
+    padding: 100px 20px;
+  `} ${media.mobile`
+    padding-top: ${props => props.theme.headerHeightMobile};
+  `}
 `;
 
 const Message = styled.div`

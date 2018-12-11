@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const ButtonComponent = styled.button`
   min-width: 150px;
+  height: 40px;
   border: 1px solid ${props => props.theme.purpleDark};
   background: ${props => props.theme.purple};
   color: ${props => props.theme.white};

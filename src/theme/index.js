@@ -15,4 +15,6 @@ module.exports = {
   bold: '600',
 
   modalBorderRadius: '30px',
+
+  headerHeightMobile: '186px',
 };

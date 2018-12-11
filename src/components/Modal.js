@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import media from './../utils/media';
 import Rating from './Rating';
 import Input from './Input';
 
@@ -24,15 +25,34 @@ const ModalContent = styled.div`
   justify-content: center;
   background: ${props => props.theme.white};
   border-radius: ${props => props.theme.modalBorderRadius};
+  ${media.tablet`
+    width: 80%;
+  `}
+  ${media.mobile`
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    flex-wrap: wrap;
+    padding: 30px 10px;
+    overflow: scroll;
+  `}
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+  ${media.mobile`
+    margin-top: 0;
+    font-size: 20px;
+  `}
+`;
 
 const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
+  ${media.mobile`
+    width: 100%;
+  `}
 `;
 
 const ImageContainer = styled(ContentContainer)`
@@ -54,6 +74,10 @@ const CloseButton = styled.button`
   font-size: ${props => props.theme.fontSizeIcon};
   background: none;
   border: none;
+  ${media.mobile`
+    top: 5px;
+    right: 0;
+  `}
 `;
 
 const Link = styled.a`
